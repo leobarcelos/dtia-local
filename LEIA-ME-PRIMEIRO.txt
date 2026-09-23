@@ -1,0 +1,12 @@
+DATATECH IMAGE ARCHIVES — LOCAL 0.1.2
+======================================
+
+1. Extraia este ZIP inteiro para uma pasta fixa.
+2. Execute INSTALAR.bat uma única vez.
+3. Execute INICIAR.bat para usar o DTIA Local.
+4. Clique em “Adicionar pasta” e escolha onde estão suas imagens.
+
+Os arquivos originais não são copiados, movidos, editados ou apagados.
+O DTIA guarda somente seu índice, organização e miniaturas locais.
+
+Manual completo: README.md

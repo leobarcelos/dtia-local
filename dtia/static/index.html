@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0c0b0c">
+    <title>DTIA Local</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <svg class="icon-library" aria-hidden="true">
+      <symbol id="i-archive" viewBox="0 0 24 24"><path d="M4 7h16v13H4zM3 3h18v4H3zm6 8h6"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+      <symbol id="i-folder-plus" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3zM12 11v5m-2.5-2.5h5"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5M18 9a7 7 0 0 0-12-2M6 15a7 7 0 0 0 12 2"/></symbol>
+      <symbol id="i-images" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="8" cy="9" r="1.5"/><path d="m5 18 5-5 3 3 2-2 4 4"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.8a5.4 5.4 0 0 0-7.7 0L12 7l-1.1-1.2a5.4 5.4 0 0 0-7.7 7.6L12 22l8.8-8.6a5.4 5.4 0 0 0 0-7.6Z"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M16 8V4H4v12h4"/></symbol>
+      <symbol id="i-collection" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 5V3h8v2"/><path d="M8 10h8m-8 4h5"/></symbol>
+      <symbol id="i-offline" viewBox="0 0 24 24"><path d="M3 3l18 18M8.5 8.5A7 7 0 0 1 19 10m-2 4a7 7 0 0 0-3.5-2.5M5 10a7 7 0 0 0-1 4h10"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c6.5 0 10 6 10 6a18 18 0 0 1-2.2 2.8M6.2 6.2C3.5 8 2 12 2 12s3.5 6 10 6a10 10 0 0 0 3-.5"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6-9 9M18 13v7H4V6h7"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-9v.1"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10m-7 6h4"/></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    </svg>
+
+    <div class="dtia-shell">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir navegação"><svg><use href="#i-menu"/></svg></button>
+        <button class="brand" data-action="home" aria-label="Ir para o acervo">
+          <span class="brand-mark"><svg><use href="#i-archive"/></svg></span>
+          <span class="brand-copy"><strong>DATATECH</strong><small>IMAGE ARCHIVES / LOCAL</small></span>
+        </button>
+        <label class="search-box">
+          <svg><use href="#i-search"/></svg>
+          <input id="searchInput" type="search" placeholder="Pesquisar nome, pasta, tag ou nota…" autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="top-actions">
+          <button class="button ghost privacy-button" id="privacyButton"><svg><use href="#i-lock"/></svg><span>Privacidade</span></button>
+          <button class="button ghost" id="scanAllButton"><svg><use href="#i-refresh"/></svg><span>Reindexar</span></button>
+          <button class="button primary" id="addFolderButton"><svg><use href="#i-folder-plus"/></svg><span>Adicionar pasta</span></button>
+        </div>
+      </header>
+
+      <aside class="rail" id="rail">
+        <nav class="main-nav" aria-label="Navegação do arquivo">
+          <button class="nav-item active" data-view="all"><svg><use href="#i-images"/></svg><span>Todo o acervo</span><small id="totalCount">0</small></button>
+          <button class="nav-item" data-view="favorites"><svg><use href="#i-heart"/></svg><span>Favoritos</span><small id="favoriteCount">0</small></button>
+          <button class="nav-item" data-view="duplicates"><svg><use href="#i-copy"/></svg><span>Duplicatas exatas</span><small id="duplicateCount">0</small></button>
+          <button class="nav-item" data-view="offline"><svg><use href="#i-offline"/></svg><span>Indisponíveis</span><small id="offlineCount">0</small></button>
+        </nav>
+
+        <section class="rail-section">
+          <div class="rail-label"><span>Pastas e unidades</span><button id="addFolderMini" title="Adicionar pasta"><svg><use href="#i-plus"/></svg></button></div>
+          <div id="rootList" class="rail-list"></div>
+        </section>
+
+        <section class="rail-section collections-section">
+          <div class="rail-label"><span>Coleções</span><button id="newCollectionMini" title="Nova coleção"><svg><use href="#i-plus"/></svg></button></div>
+          <div id="collectionList" class="rail-list"></div>
+        </section>
+
+        <footer class="rail-footer">
+          <span class="status-light online"></span>
+          <div><strong>Somente neste computador</strong><small id="versionLabel">DTIA Local</small></div>
+        </footer>
+      </aside>
+
+      <aside class="filters" id="filters">
+        <div class="filter-title"><strong>Filtros</strong><button id="clearFilters">Limpar</button></div>
+        <section class="filter-block">
+          <label>Orientação</label>
+          <div class="segments" id="orientationFilter">
+            <button class="active" data-value="">Todas</button><button data-value="landscape">H</button><button data-value="portrait">V</button><button data-value="square">□</button>
+          </div>
+        </section>
+        <section class="filter-block">
+          <label for="formatFilter">Formato</label>
+          <select id="formatFilter"><option value="">Todos os formatos</option><option>jpg</option><option>jpeg</option><option>png</option><option>webp</option><option>gif</option><option>tif</option><option>tiff</option><option>bmp</option><option>avif</option><option>heic</option></select>
+        </section>
+        <section class="filter-block">
+          <label for="ratingFilter">Classificação</label>
+          <select id="ratingFilter"><option value="">Todas</option><option value="general">Geral</option><option value="sensitive">Sensível</option><option value="adult">Adulto / NSFW</option></select>
+        </section>
+        <section class="filter-block">
+          <label for="widthFilter">Largura mínima</label>
+          <select id="widthFilter"><option value="">Qualquer resolução</option><option value="1280">1.280 px</option><option value="1920">1.920 px</option><option value="2560">2.560 px</option><option value="3840">3.840 px / 4K</option><option value="7680">7.680 px / 8K</option></select>
+        </section>
+        <section class="filter-block tag-block">
+          <label>Tags mais usadas</label>
+          <div id="tagCloud" class="tag-cloud"><span class="muted">Nenhuma tag ainda</span></div>
+        </section>
+        <section class="safety-note"><svg><use href="#i-info"/></svg><p>O DTIA lê os arquivos no local original. Apenas miniaturas e metadados entram no índice.</p></section>
+      </aside>
+
+      <main class="archive-main">
+        <section class="archive-heading">
+          <div><p class="eyebrow" id="eyebrow">ARQUIVO LOCAL</p><h1 id="viewTitle">Todo o acervo</h1><p id="viewDescription">Imagens catalogadas diretamente dos seus discos, sem duplicar os arquivos originais.</p></div>
+          <div class="heading-actions"><span id="resultCount">0 imagens</span><button class="button icon-only mobile-filter" id="mobileFilter" title="Filtros"><svg><use href="#i-filter"/></svg></button><select id="sortSelect"><option value="newest">Mais recentes</option><option value="oldest">Mais antigas</option><option value="name">Nome A–Z</option><option value="resolution">Maior resolução</option><option value="random">Ordem aleatória</option></select></div>
+        </section>
+
+        <section class="scan-panel hidden" id="scanPanel" aria-live="polite">
+          <div class="scan-copy"><span class="scan-spinner"></span><div><strong id="scanTitle">Indexando…</strong><small id="scanCurrent"></small></div><span id="scanNumbers"></span></div>
+          <div class="progress-track"><span id="scanProgress"></span></div>
+        </section>
+
+        <section class="empty-state hidden" id="emptyState">
+          <span class="empty-mark"><svg><use href="#i-folder-plus"/></svg></span>
+          <p class="eyebrow">PRIMEIRO PASSO</p>
+          <h2>Conecte o primeiro diretório</h2>
+          <p>Escolha uma pasta de imagens ou a raiz de um HD. O DTIA criará miniaturas e um índice local, sem mover ou copiar os originais.</p>
+          <button class="button primary" id="emptyAddFolder"><svg><use href="#i-folder-plus"/></svg>Escolher pasta</button>
+          <button class="text-button" id="manualPathButton">Informar o caminho manualmente</button>
+        </section>
+
+        <section class="gallery" id="gallery" aria-live="polite"></section>
+        <div class="load-more-wrap"><button class="button ghost hidden" id="loadMore">Carregar mais imagens</button></div>
+      </main>
+    </div>
+
+    <dialog class="detail-dialog" id="detailDialog">
+      <div class="dialog-shell detail-shell">
+        <button class="dialog-close" data-close="detailDialog" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+        <div class="detail-media" id="detailMedia"></div>
+        <div class="detail-panel">
+          <p class="eyebrow">FICHA DO ARQUIVO</p>
+          <input class="detail-title-input" id="detailTitle" aria-label="Título da imagem">
+          <p class="detail-path" id="detailPath"></p>
+          <div class="detail-actions">
+            <button class="button ghost" id="detailFavorite"><svg><use href="#i-heart"/></svg><span>Favoritar</span></button>
+            <a class="button ghost" id="openOriginal" href="#" target="_blank"><svg><use href="#i-external"/></svg><span>Original</span></a>
+            <button class="button ghost" id="revealFile"><svg><use href="#i-folder"/></svg><span>Localizar</span></button>
+          </div>
+          <div class="metadata-grid" id="metadataGrid"></div>
+          <label class="field"><span>Classificação de conteúdo</span><select id="detailRating"><option value="general">Geral</option><option value="sensitive">Sensível</option><option value="adult">Adulto / NSFW</option></select></label>
+          <label class="field"><span>Tags <small>separadas por vírgula</small></span><input id="detailTags" placeholder="personagem, referência, cyberpunk"></label>
+          <label class="field"><span>Notas</span><textarea id="detailNotes" rows="4" placeholder="Contexto, origem, uso planejado…"></textarea></label>
+          <fieldset class="field collections-field"><legend>Coleções</legend><div id="detailCollections"></div></fieldset>
+          <details class="exif-details"><summary>Metadados EXIF</summary><div id="exifList"></div></details>
+          <div class="duplicate-notice hidden" id="duplicateNotice"></div>
+          <div class="dialog-footer"><button class="button primary" id="saveDetails"><svg><use href="#i-check"/></svg>Salvar alterações</button></div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="compact-dialog" id="collectionDialog">
+      <form class="dialog-shell" id="collectionForm">
+        <button type="button" class="dialog-close" data-close="collectionDialog" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+        <p class="eyebrow">ORGANIZAÇÃO</p><h2>Nova coleção</h2><p>Crie um agrupamento sem mover os arquivos de suas pastas originais.</p>
+        <label class="field"><span>Nome</span><input id="collectionName" maxlength="120" required autofocus placeholder="Ex.: Referências para Nocturna"></label>
+        <label class="field"><span>Descrição <small>opcional</small></span><textarea id="collectionDescription" rows="3"></textarea></label>
+        <div class="dialog-footer"><button type="button" class="button ghost" data-close="collectionDialog">Cancelar</button><button class="button primary" type="submit">Criar coleção</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="compact-dialog" id="pathDialog">
+      <form class="dialog-shell" id="pathForm">
+        <button type="button" class="dialog-close" data-close="pathDialog" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+        <p class="eyebrow">CAMINHO LOCAL</p><h2>Adicionar pasta manualmente</h2><p>Use, por exemplo, <code>D:\\Imagens</code> ou <code>E:\\Arquivo Visual</code>.</p>
+        <label class="field"><span>Caminho completo</span><input id="manualPath" required placeholder="D:\Imagens"></label>
+        <label class="field"><span>Nome no DTIA <small>opcional</small></span><input id="manualLabel" placeholder="HD Samsung — Referências"></label>
+        <div class="dialog-footer"><button type="button" class="button ghost" data-close="pathDialog">Cancelar</button><button class="button primary" type="submit">Adicionar e indexar</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="compact-dialog" id="privacyDialog">
+      <form class="dialog-shell" id="privacyForm">
+        <button type="button" class="dialog-close" data-close="privacyDialog" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+        <p class="eyebrow">CONTEÚDO PRIVADO</p><h2>Controle de visibilidade</h2><p>Essas opções afetam somente a exibição. Nenhum arquivo original é alterado.</p>
+        <label class="field"><span>Imagens adultas / NSFW</span><select id="adultVisibility"><option value="blur">Desfocar até eu revelar</option><option value="hide">Ocultar do acervo</option><option value="show">Exibir normalmente</option></select></label>
+        <label class="field"><span>Imagens sensíveis</span><select id="sensitiveVisibility"><option value="show">Exibir normalmente</option><option value="blur">Desfocar até eu revelar</option><option value="hide">Ocultar do acervo</option></select></label>
+        <div class="privacy-local-note"><svg><use href="#i-lock"/></svg><span>O servidor aceita conexões apenas deste computador.</span></div>
+        <div class="dialog-footer"><button type="button" class="button ghost" data-close="privacyDialog">Cancelar</button><button class="button primary" type="submit">Aplicar</button></div>
+      </form>
+    </dialog>
+
+    <dialog class="compact-dialog source-dialog" id="sourceDialog">
+      <div class="dialog-shell">
+        <button type="button" class="dialog-close" data-close="sourceDialog" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+        <p class="eyebrow">GERENCIAR FONTE</p><h2 id="sourceDialogName">Fonte local</h2>
+        <p class="source-path" id="sourceDialogPath"></p>
+
+        <section class="source-option">
+          <div><strong>Desconectar fonte</strong><p>Retira a fonte da barra lateral, mas mantém índice, favoritos, tags, notas e coleções. Para reconectar, basta adicionar novamente o mesmo caminho.</p></div>
+          <button type="button" class="button ghost" id="disconnectSource">Desconectar</button>
+        </section>
+
+        <section class="source-option danger-zone">
+          <div><strong>Remover do catálogo</strong><p>Exclui do DTIA os registros e as miniaturas desta fonte. As imagens originais no HD não serão alteradas.</p></div>
+          <label class="confirm-check"><input type="checkbox" id="confirmSourceRemoval"><span>Confirmo que quero remover esta fonte do catálogo.</span></label>
+          <button type="button" class="button danger" id="removeSource" disabled>Remover do catálogo</button>
+        </section>
+      </div>
+    </dialog>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+    <div class="scrim" id="scrim"></div>
+  </body>
+</html>
